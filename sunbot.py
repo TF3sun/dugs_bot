@@ -1,4 +1,5 @@
 import discord
+import os
 
 class MyClient(discord.Client):
     async def on_ready(self):
@@ -127,4 +128,5 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 client = MyClient(intents=intents)
-client.run('MTAxNzMzMTM0MTMzMjg0MDQ1OA.Ge1b49.cpE5QFAtDzIaDs7fheEYsFhVkGA0w0wu4gewsA')
+access_token = os.environ["BOT_TOEKN"]
+client.run(access_token)
