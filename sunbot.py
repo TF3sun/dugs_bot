@@ -128,5 +128,5 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 client = MyClient(intents=intents)
-access_token = os.environ["BOT_TOEKN"]
+access_token = os.environ["BOT_TOKEN"]
 client.run(access_token)
