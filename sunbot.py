@@ -16,8 +16,9 @@ class game_fac:
 
 lol = game_fac('롤', 401518684763586560, 1024580671294931014, 1024582103909797939)
 pubg = game_fac('배그', 530196305138417685, 1024580768204324905, 1024625771152683098)
-valo = game_fac('발로', 700136079562375258, 1024580813171462144, 1024625650407047229)
+valo = game_fac('발로', 0, 1024580813171462144, 1024625650407047229)
 losta = game_fac('로아', 0, 1024581467755528253, 1024625930183913502)
+overw = game_fac('옵치', 356875221078245376, 1027564734075129946, 1027565115756785784)
 
 cmd_list = ['.안녕', '.명령', '.게임', '.게임 참가']
 
@@ -125,6 +126,18 @@ class MyClient(discord.Client):
                     await cmd_game_join(message, game)
                 else:
                     None
+
+        elif msg[0] == '.옵치':
+            game = overw
+            await cmd_give_role(message, game)
+            if len(msg) == 1:
+                return
+            else:
+                if msg[1] == '참가':
+                    await cmd_game_join(message, game)
+                else:
+                    None
+        
         else:   #not command message
             await cmd_not_cmd
 
@@ -142,6 +155,9 @@ class MyClient(discord.Client):
             await auto_give_role(after, game)
         elif after.activity.name == 'PUBG: BATTLEGROUNDS':
             game = pubg
+            await auto_give_role(after, game)
+        elif after.activity.name == 'Overwatch':
+            game = overw
             await auto_give_role(after, game)
         else:
             None
